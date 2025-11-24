@@ -6,18 +6,18 @@ files:
 file_exists_behavior: OVERWRITE
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: .aws/scripts/install_dependencies.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: scripts/start_server.sh
+    - location: .aws/scripts/start_server.sh
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: scripts/stop_server.sh
+    - location: .aws/scripts/stop_server.sh
       timeout: 300
       runas: root
   AfterInstall:
-    - location: scripts/cleaning_install.sh
+    - location: .aws/scripts/cleaning_install.sh
       timeout: 300
       runas: root
