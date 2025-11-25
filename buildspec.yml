@@ -4,8 +4,6 @@ phases:
   pre_build:
     commands:
       - echo Init Build...
-      - dnf install -y git python311 python3.11-pip python3.11-devel
-      - git clone https://github.com/AnByoungHyun/django-community-board.git
   build:
     commands:
       - echo Build Start...
