@@ -2,19 +2,20 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /opt/django-community-board
+    destination: /opt/django-community-board # 1. 소스 코드가 복사될 서버 내 최종 경로
 file_exists_behavior: OVERWRITE
 hooks:
- 
-  ApplicationStart:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: root
-  ApplicationStop:
+  ApplicationStop: # 1. 서버 중단 (새 배포 시 가장 먼저 실행)
     - location: scripts/stop_server.sh
       timeout: 300
       runas: root
-  AfterInstall:
+      
+  AfterInstall:    # 2. 설치 및 설정 (파일 복사 후 실행)
     - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: root
+      
+  ApplicationStart: # 3. 서버 시작 (가장 마지막에 실행)
+    - location: scripts/start_server.sh
       timeout: 300
       runas: root
